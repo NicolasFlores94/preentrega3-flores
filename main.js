@@ -6,7 +6,7 @@ const productos = [
 ];
 
 const shop = document.getElementById("shop")
-const verCarrito = document.getElementById(verCarrito)
+const verCarrito = document.getElementById("verCarrito")
 const modalContainer = document.getElementById("modal-container")
 let carrito = []
 
