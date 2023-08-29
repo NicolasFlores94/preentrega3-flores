@@ -3,17 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Distribuidora</title>
+    <title>Document</title>
 </head>
 <body>
-    <div class="nav-conteiner"></div>
-        <nav class="navbar">
-            <h1 class="navbar-carrito" id="verCarrito">Shop</h1>
+    <h1>Carrito de Compras</h1>
+    
+    <section class="card_conteiner">
+        <div class="card" id="producto1">
+            <h2>Fernet 750cc</h2>
+            <p>Precio $3000</p>
+            <button class="btnprincipal" onclick="addToCart('Fernet 750cc', 3000)">Comprar</button>
+        </div>
 
-        </nav>
-    <main>
-        <div id="shop" class="shopp">Carrito</div>
-    </main>
-    <script src="main.js"></script>
+        <div class="card" id="producto2">
+            <h2>Gancia</h2>
+            <p>Precio $2500</p>
+            <button class="btnprincipal" onclick="addToCart('Gancia', 2500)">Comprar</button>
+        </div>
+
+        <div class="card" id="producto3">
+            <h2>Smirnoff</h2>
+            <p>Precio $4000</p>
+            <button class="btnprincipal" onclick="addToCart('Smirnoff', 4000)">Comprar</button>
+        </div>
+    </section>
+
+    <h2>Carrito</h2>
+    <div class="carro" id="carro">    </div>
+
+    <p>Total: $<span id="carro-total">0.00</span></p>
+<script src="main.js"></script>
 </body>
 </html>

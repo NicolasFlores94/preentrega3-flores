@@ -1,71 +1,47 @@
 const productos = [
-  {nombre:"Fernet", precio: 3000},
-  {nombre:"Gancia", precio: 2000},
-  {nombre:"Smirnoff", precio: 4000,
-  }
+  { id: 1, nombre: "fernet", precio: 3000 },
+  { id: 2, nombre: "gancia", precio: 2500 },
+  { id: 3, nombre: "smirnoff", precio: 4000 },
 ];
 
-const shop = document.getElementById("shop")
-const verCarrito = document.getElementById("verCarrito")
-const modalContainer = document.getElementById("modal-container")
-let carrito = []
+localStorage.setItem("productos", productos)
 
-productos.forEach((producto)=>{
-  let caja = document.createElement("div");
-  caja.className = "card"
-  caja.innerHTML = `
-  <h3>${producto.nombre}</h3>
-  <p>$${producto.precio}</p>
-  `;
+ // Variables para el carrito
+ const carrito = [];
+ let total = 0;
 
-  shop.append(caja);
+ // Función para agregar un producto al carrito
+ function AgregarCarrito(producto, precio) {
+     carrito.push({ nombre: producto, precio: precio });
+     ActualizarCarrito();
+ }
 
-  let comprar = document.createElement("button")
-  comprar.innerText = "comprar";
-  comprar.className = "comprar"
-  caja.append(comprar);
+sessionStorage.setItem("carrito", ActualizarCarrito)
 
-  comprar.addEventListener("click", ()=>{
-    carrito.push({
-      nombre: productos.nombre,
-      precio: productos.precio,
-    })
-  })
+ // Función para actualizar el carrito y el total
+ function ActualizarCarrito() {
+     const carrito2 = document.getElementById("carro");
+     const carros = document.getElementById("carro-total");
 
-})
+     carrito2.innerHTML = "";
+     total = 0;
 
-verCarrito.addEventListener("click",()=>{
-  const modal = document.createElement("div");
-  modal.className = "modal-header";
-  modal.innerHTML = `
-  <h1 class="modal-title">Carrito</h1>`;
+     carrito.forEach((item) => {
+         const cartItem = document.createElement("div");
+         cartItem.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+         cartElement.appendChild(cartItem);
+         total += item.price;
+     });
 
-  modalContainer.append(modal);
+     cartTotalElement.textContent = total.toFixed(2);
+ }
 
-  const modalButton = document.createElement("h1");
-  modalButton.innerText = "x";
-  modalButton.className = "modal-button";
+ let botones = document.querySelectorAll(".btnprincipal");
 
-  modalButton.addEventListener = ("click", ()=>{
-    modalContainer.style.display = "none";
-  })
-  modal.append(modalButton);
+botones.forEach(boton => {
+  boton.addEventListener("click", respuestaClick);
+});
 
-  carrito.forEach((producto)=>{
-    let carritoContent = document.createElement("div");
-    carrito.className = "modal-content";
-    carrito.innerHTML = `
-    <h3>${producto.nombre}</h3>
-    <p>${producto.precio}</p>`;
-
-    modalContainer.append(carritoContent)
-  });
-
-  const total = carrito.reduce((acc, el)=>acc + el.precio, 0);  
-  const totalCompra = document.createElement("div");
-  totalCompra.className = "totalCompra";
-  totalCompra.innerHTML= `Total a pagar:$${total}`;
-  modalContainer.append(totalCompra);  
-
-
-})
+function respuestaClick() {
+  alert("Añadido al carrito");
+}
